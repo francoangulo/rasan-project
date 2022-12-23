@@ -13,10 +13,13 @@ Proyecto de gestión de órdenes utilizando AWS SQS (Simple Queue Services)
 - Para Linux, Unix, y macOS: ~/.aws/credentials
 - Para Windows: C:\Users\USER_NAME\.aws\credentials
 
-Abrir el archivo credentials
-La estructura es la sigiuente
+Abrir el archivo credentials. La estructura es la sigiuente <br/>
+```js
+[default]
+aws_access_key_id = * * * * *
+aws_secret_access_key = * * * * *
+region = * * * * *
+```
 
-[default] --> default es el "workspace", que será apuntado por la variable de entorno AWS_PROFILE=\* \* \* \* \*
-aws_access_key_id = ******\*\*******
-aws_secret_access_key = ******\*\*******
-region = ******\*\*******
+En donde `[default]` es el workspace, y podemos definir tantos como queramos. Pudiendo así tener las claves de *QA* y *PRODUCTION* almacenadas al mismo tiempo, y utilizar unas u otras con sólo especificar la variable de entorno **AWS_PROFILE** <br/>
+El resto de los campos corresponde a `AWS ACCESS KEY`, `AWS SECRET ACCESS KEY`, y `REGION`
