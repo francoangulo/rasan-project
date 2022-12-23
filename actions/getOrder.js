@@ -14,7 +14,9 @@ var chalk = require("chalk");
     ? getOrderNumber(result.Messages[0].Body)
     : "no-order";
   fs.writeFile(`${orderNumber}.json`, JSON.stringify(result), () => {
-    console.log(chalk.bgGreen.bold("\n\n Exported file successfully!"));
+    orderNumber === "no-order"
+      ? console.log(chalk.bgYellow.bold("\n\n No order found!"))
+      : console.log(chalk.bgGreen.bold("\n\n Saved new order!"));
   });
 })();
 

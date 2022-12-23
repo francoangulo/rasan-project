@@ -4,13 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev-listQueues": "ENVIRONMENT=development node actions/listQueues.js",
-    "prod-listQueues": "ENVIRONMENT=production node actions/listQueues.js",
-    "getAttributes": "node getAttributes.js",
-    "sendMessage": "node sendMessage.js",
     "dev-getOrder": "ENVIRONMENT=development node actions/getOrder.js",
     "prod-getOrder": "ENVIRONMENT=production node actions/getOrder.js",
+    "dev-updateOrder": "ENVIRONMENT=development node actions/updateOrder.js",
+    "prod-updateOrder": "ENVIRONMENT=production node actions/updateOrder.js",
+    "dev-listQueues": "ENVIRONMENT=development node actions/listQueues.js",
+    "prod-listQueues": "ENVIRONMENT=production node actions/listQueues.js",
     "dev-receiveMessage": "ENVIRONMENT=development node actions/receiveMessage.js",
     "prod-receiveMessage": "ENVIRONMENT=production node actions/receiveMessage.js"
   },
