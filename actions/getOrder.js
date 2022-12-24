@@ -1,29 +1,25 @@
-require("dotenv").config({ path: `.env.${process.env.ENVIRONMENT}` });
-const SQSHelper = require("../config/SQSHelper");
-const fs = require("fs");
-var chalk = require("chalk");
+import * as dotenv from "dotenv";
+dotenv.config({ path: `.env.${process.env.ENVIRONMENT}` });
+import { ReceiveMessageCommand } from "@aws-sdk/client-sqs";
+import { sqsClient } from "../config/SQSClient.js";
+import fs from "fs";
+import chalk from "chalk";
+import { getOrderNumber } from "../utils/getOrderNumber.js";
 
 (async () => {
-  const sqs = new SQSHelper();
   const params = {
     QueueUrl: process.env.GET_ORDER,
     Action: "ReceiveMessage",
   };
-  const result = await sqs.receiveMessage(params);
+  const result = await sqsClient.send(new ReceiveMessageCommand(params));
   const orderNumber = result.Messages
     ? getOrderNumber(result.Messages[0].Body)
     : "no-order";
   fs.writeFile(`${orderNumber}.json`, JSON.stringify(result), () => {
     orderNumber === "no-order"
       ? console.log(chalk.bgYellow.bold("\n\n No order found!"))
-      : console.log(chalk.bgGreen.bold("\n\n Saved new order!"));
+      : console.log(
+          chalk.bgGreen.bold(`\n\n Saved new order!  ---> ${orderNumber}`)
+        );
   });
 })();
-
-const getOrderNumber = (body) => {
-  const start =
-    String(body).lastIndexOf("<OrderNumber>") + "<OrderNumber>".length;
-  const end = String(body).lastIndexOf("</OrderNumber>");
-  const newName = String(body).substring(start, end);
-  return newName;
-};
