@@ -46,5 +46,12 @@ Si surge algún inconveniente durante estos pasos seguir la documentación de ht
 https://docs.github.com/es/authentication/keeping-your-account-and-data-secure/githubs-ssh-key-fingerprints
 
 - De ser asi, en la terminal escribir `yes` y luego enter
+- Deberia aparecer un mensaje como el siguiente y ya está todo listo
+
+![image](https://user-images.githubusercontent.com/58487596/209725231-a391ca71-b4e1-48e5-baaf-c67be2289969.png)
+
 
 - Una vez instalado, abrir terminal de comandos en la carpeta donde se quiera guardar el proyecto y ejecutar el comando: `git clone https://github.com/francoa7/rasan-project`
+- Esto clona el proyecto en la compu
+- En la misma terminal ejecutar `npm i` (esto instala las librerías necesarias)
+- Una vez hecho esto, podríamos ejecutar el .bat con el nombre **winDevGetOrder.bat**
