@@ -5,7 +5,7 @@ Proyecto de gestión de órdenes utilizando AWS SQS (Simple Queue Services)
 ## Instrucciones
 
 - Instalar `git` desde la página oficial haciendo click en `Click here to download`. Ejecutar el instalador con las configuraciones por defecto
-- Abrir `Git Bash` desde los programas (git bash es una nueva terminal que tenemos integrada al instalar Git)
+- Abrir `Git Bash` o la terminal de windows/cmd desde los programas (git bash es una nueva terminal que tenemos integrada al instalar Git)
 - Ejecutar los siguientes comandos de manera secuencial:
 - `ssh-keygen -t ed25519 -C "francoangulo2001@gmail.com"`
 - Presionar intro cuando pregunte por el archivo en el cuál guardar las claves (esto lo guardará en el archivo por default)
