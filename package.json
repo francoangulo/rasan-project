@@ -5,13 +5,21 @@
   "main": "index.js",
   "scripts": {
     "dev-getOrder": "ENVIRONMENT=development node actions/getOrder.js",
+    "dev-getOrder-win": "set ENVIRONMENT=development&& node actions/getOrder.js",
     "prod-getOrder": "ENVIRONMENT=production node actions/getOrder.js",
+    "prod-getOrder-win": "set ENVIRONMENT=production&& node actions/getOrder.js",
     "dev-updateOrder": "ENVIRONMENT=development node actions/updateOrder.js",
+    "dev-updateOrder-win": "set ENVIRONMENT=development&& node actions/updateOrder.js",
     "prod-updateOrder": "ENVIRONMENT=production node actions/updateOrder.js",
+    "prod-updateOrder-win": "set ENVIRONMENT=production&& node actions/updateOrder.js",
     "dev-listQueues": "ENVIRONMENT=development node actions/listQueues.js",
+    "dev-listQueues-win": "set ENVIRONMENT=development&& node actions/listQueues.js",
     "prod-listQueues": "ENVIRONMENT=production node actions/listQueues.js",
+    "prod-listQueues-win": "set ENVIRONMENT=production&& node actions/listQueues.js",
     "dev-receiveMessage": "ENVIRONMENT=development node actions/receiveMessage.js",
-    "prod-receiveMessage": "ENVIRONMENT=production node actions/receiveMessage.js"
+    "dev-receiveMessage-win": "set ENVIRONMENT=development&& node actions/receiveMessage.js",
+    "prod-receiveMessage": "ENVIRONMENT=production node actions/receiveMessage.js",
+    "prod-receiveMessage-win": "set ENVIRONMENT=production&& node actions/receiveMessage.js"
   },
   "keywords": [],
   "author": "",
