@@ -13,14 +13,22 @@ const SQS_PARAMS = {
 
 // TODO: Check this code and cover the possible error cases. Then optimize the code with better practices
 (async () => {
-  const result = await sqsClient.send(new ReceiveMessageCommand(SQS_PARAMS));
-  const bodyMessage = result.Messages ? result.Messages[0].Body : false;
-  const orderNumber = bodyMessage
-    ? getOrderNumber(result.Messages[0].Body)
-    : "no-order";
-  ensureFoldersExist();
-  saveJson(result, orderNumber);
-  saveXml(bodyMessage, orderNumber);
+  try {
+    const result = await sqsClient.send(new ReceiveMessageCommand(SQS_PARAMS));
+    const bodyMessage = result.Messages ? result.Messages[0].Body : false;
+    const orderNumber = bodyMessage
+      ? getOrderNumber(result.Messages[0].Body)
+      : "no-order";
+    ensureFoldersExist();
+    saveJson(result, orderNumber);
+    saveXml(bodyMessage, orderNumber);
+  } catch (error) {
+    console.log(
+      `${chalk.bgHex("#ff0000").hex("#ffffff")(
+        "  SE PRODUJO UN ERROR EN LA PETICIÓN:  "
+      )} ${error}`
+    );
+  }
 })();
 
 const ensureFoldersExist = () => {
