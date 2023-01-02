@@ -15,6 +15,7 @@ const SQS_PARAMS = {
 (async () => {
   try {
     const result = await sqsClient.send(new ReceiveMessageCommand(SQS_PARAMS));
+    console.log({ result });
     const bodyMessage = result.Messages ? result.Messages[0].Body : false;
     const orderNumber = bodyMessage
       ? getOrderNumber(result.Messages[0].Body)
