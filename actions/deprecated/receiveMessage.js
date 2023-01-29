@@ -1,5 +1,5 @@
 require("dotenv").config({ path: `.env.${process.env.ENVIRONMENT}` });
-const SQSHelper = require("../config/SQSClient");
+const SQSHelper = require("../../config/SQSClient");
 const fs = require("fs");
 var chalk = require("chalk");
 console.log({ ENV: process.env.REGION });

@@ -1,5 +1,5 @@
 require("dotenv").config();
-const SQSHelper = require("../config/SQSHelper");
+const SQSHelper = require("../../config/SQSHelper");
 
 (async () => {
   const sqs = new SQSHelper();
