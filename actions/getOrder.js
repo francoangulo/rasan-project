@@ -8,7 +8,6 @@ import { getOrderNumber } from "../utils/getOrderNumber.js";
 
 const SQS_PARAMS = {
   QueueUrl: process.env.GET_ORDER,
-  Action: "ReceiveMessage",
 };
 
 // TODO: Check this code and cover the possible error cases. Then optimize the code with better practices
