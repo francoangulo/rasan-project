@@ -18,17 +18,27 @@ router.get("/get-order", async (req, res) => {
   }
 });
 
-router.put("/put-order", async (req, res) => {
-  const SQS_PARAMS = {
-    QueueUrl: process.env.PUT_ORDER,
-    // !This is the XML encoded Message, with the structure specified below this route
-    MessageBody:
-      "%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0A%3COrderUpdates%3E%0A%3COrderStatus%3E%0A%3CSellerId%3E55710%3C%2FSellerId%3E%20%0A%3CStorefront%3EArgentinaStore%3C%2FStorefront%3E%0A%3COrderNumber%3E5907979%3C%2FOrderNumber%3E%20%0A%3CStatus%3EDelivered%3C%2FStatus%3E%20%0A%3CEZDOrderNumber%3E12345%3C%2FEZDOrderNumber%3E%20%0A%3C%2FOrderStatus%3E%0A%3C%2FOrderUpdates%3E",
-  };
+// router.put("/put-order", async (req, res) => {
+//   const SQS_PARAMS = {
+//     QueueUrl: process.env.PUT_ORDER,
+//     // !This is the XML encoded Message, with the structure specified below this route
+//     MessageBody:
+//       "%3C%3Fxml%20version%3D%271.0%27%20encoding%3D%27UTF-8%27%3F%3E%0A%3COrderUpdates%3E%0A%3COrderStatus%3E%0A%3CSellerId%3E55710%3C%2FSellerId%3E%20%0A%3CStorefront%3EArgentinaStore%3C%2FStorefront%3E%0A%3COrderNumber%3E5907979%3C%2FOrderNumber%3E%20%0A%3CStatus%3EDelivered%3C%2FStatus%3E%20%0A%3CEZDOrderNumber%3E12345%3C%2FEZDOrderNumber%3E%20%0A%3C%2FOrderStatus%3E%0A%3C%2FOrderUpdates%3E",
+//   };
 
+//   try {
+//     const result = await sqsClient.send(new SendMessageCommand(SQS_PARAMS));
+//     return res.status(200).json(result);
+//   } catch (error) {
+//     return res.status(500).json({ error });
+//   }
+// });
+
+router.put("/put-order", async (req, res) => {
+  const { body } = req;
+  console.log({ body });
   try {
-    const result = await sqsClient.send(new SendMessageCommand(SQS_PARAMS));
-    return res.status(200).json(result);
+    return res.status(200).json({ "mensaje-recibido": body.message });
   } catch (error) {
     return res.status(500).json({ error });
   }

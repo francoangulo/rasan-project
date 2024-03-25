@@ -13,6 +13,8 @@ app.get("/", (req, res) => {
   res.send("HELLO WORLD!");
 });
 
+app.use(express.json());
+
 app.use("/orders", orders);
 app.use("/invoices", invoices);
 app.use("/responses", responses);
