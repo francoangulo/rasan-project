@@ -1,45 +1,84 @@
-import axios from "axios";
+import * as dotenv from "dotenv";
+dotenv.config({ path: `.env.${process.env.ENVIRONMENT}` });
 import https from "https";
+import axios from "axios";
+import fs from "fs";
+import { parseString } from "xml2js";
+
+const getOrders = async () => {
+  const rawXML = await readFileAsync("./orderToUpdate.xml", "utf8");
+  return rawXML;
+};
+
+const readFileAsync = (path, encoding) => {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, encoding, (error, data) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(data);
+      }
+    });
+  });
+};
+
+const writeFileAsync = (fileName, data) => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(fileName, data, (error) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve();
+      }
+    });
+  });
+};
+
+const parseXml = (xmlData) => {
+  return new Promise((resolve, reject) => {
+    parseString(xmlData, (error, result) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(result);
+      }
+    });
+  });
+};
 
 const updateOrderStatus = async () => {
-  const myHeaders = new Headers();
-  myHeaders.append("client_id", "a9b29676cfb14daa859d5d69c6cf0889");
-  myHeaders.append("client_secret", "237439F4ccab40878df52D62d2658f52");
-  myHeaders.append("X-Channel", "Web");
-  myHeaders.append("Content-Type", "application/xml");
+  const myHeaders = {
+    client_id: process.env.CLIENT_ID,
+    client_secret: process.env.CLIENT_SECRET,
+    "X-Channel": "Web",
+    "Content-Type": "application/xml",
+  };
 
-  const raw =
-    "<?xml version='1.0' encoding='UTF-8'?>\n<OrderUpdates>\n    <OrderStatus>\n        <SellerId>55710</SellerId>\n        <Storefront>ArgentinaStore</Storefront>\n        <OrderNumber>8315922</OrderNumber>\n        <Status>Delivered</Status>\n        <EZDOrderNumber>12345</EZDOrderNumber>\n    </OrderStatus>\n</OrderUpdates>";
+  const rawXML = await getOrders();
 
   const requestOptions = {
-    method: "POST",
     headers: myHeaders,
-    body: raw,
-    redirect: "follow",
+    httpsAgent: new https.Agent({ rejectUnauthorized: false }), // Custom agent with rejectUnauthorized set to false
   };
 
   try {
-    const instance = axios.create({
-      httpsAgent: new https.Agent({ rejectUnauthorized: false }),
-    });
-
-    const response = await instance.post(
-      "https://alb-pmi-reev-prd.lb.anypointdns.net/prd-reev-mulesoft-dte-ccb2b/v1/api/v1/orderstatusupdate",
+    const response = await axios.post(
+      process.env.URL_UPDATE_ORDER_STATUS,
+      rawXML,
       requestOptions
     );
-
-    console.log("the response: ", JSON.stringify(response, null, 4));
+    console.log(response.data);
+    const parsedXml = await parseXml(response.data);
+    console.log("parsedXML --> ", parsedXml);
+    const requestId = parsedXml["response-data"].RequestId[0];
+    writeFileAsync(`./${requestId}.xml`, response.data);
   } catch (error) {
-    console.error("franco an error: ", error);
+    console.error("Error: ", error);
+    writeFileAsync(
+      `./fail.txt`,
+      "There was an error updating the order status"
+    );
   }
-
-  //   fetch(
-  //     "https://alb-pmi-reev-prd.lb.anypointdns.net/prd-reev-mulesoft-dte-ccb2b/v1/api/v1/orderstatusupdate",
-  //     requestOptions
-  //   )
-  //     .then((response) => response.text())
-  //     .then((result) => console.log(result))
-  //     .catch((error) => console.error(error));
 };
 
 updateOrderStatus();

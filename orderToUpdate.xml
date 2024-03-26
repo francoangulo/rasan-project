@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<OrderUpdates>
+      <OrderStatus>
+            <SellerId>55711</SellerId>
+            <Storefront>ArgentinaStore</Storefront>
+            <OrderNumber>111592211</OrderNumber>
+            <Status>Delivered</Status>
+            <EZDOrderNumber>12345</EZDOrderNumber>
+      </OrderStatus>
+      <!-- <OrderStatus>
+            <SellerId>55710</SellerId>
+            <Storefront>ArgentinaStore</Storefront>
+            <OrderNumber>8315922</OrderNumber>
+            <Status>Delivered</Status>
+            <EZDOrderNumber>12345</EZDOrderNumber>
+      </OrderStatus> -->
+</OrderUpdates>
