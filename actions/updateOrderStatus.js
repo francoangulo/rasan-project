@@ -1,4 +1,5 @@
 import axios from "axios";
+import https from "https";
 
 const updateOrderStatus = async () => {
   const myHeaders = new Headers();
@@ -18,7 +19,11 @@ const updateOrderStatus = async () => {
   };
 
   try {
-    const response = await axios.post(
+    const instance = axios.create({
+      httpsAgent: new https.Agent({ rejectUnauthorized: false }),
+    });
+
+    const response = await instance.post(
       "https://alb-pmi-reev-prd.lb.anypointdns.net/prd-reev-mulesoft-dte-ccb2b/v1/api/v1/orderstatusupdate",
       requestOptions
     );
