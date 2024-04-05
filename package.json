@@ -33,7 +33,9 @@
     "prod-putInvoice": "ENVIRONMENT=production node actions/putInvoice.js",
     "prod-putInvoice-win": "set ENVIRONMENT=production&& node actions/putInvoice.js",
     "prod-updateOrderStatus": "ENVIRONMENT=production node actions/updateOrderStatus.js",
-    "prod-updateOrderStatus-win": "set ENVIRONMENT=production&& node actions/updateOrderStatus.js"
+    "prod-updateOrderStatus-win": "set ENVIRONMENT=production&& node actions/updateOrderStatus.js",
+    "prod-postSecuence": "ENVIRONMENT=production node actions/postSecuence.js",
+    "prod-postSecuence-win": "set ENVIRONMENT=production&& node actions/postSecuence.js"
   },
   "keywords": [],
   "author": "",

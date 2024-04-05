@@ -48,8 +48,8 @@ const parseXml = (xmlData) => {
 
 const updateOrderStatus = async () => {
   const myHeaders = {
-    client_id: process.env.CLIENT_ID,
-    client_secret: process.env.CLIENT_SECRET,
+    client_id: process.env.UPDATE_ORDER_STATUS_CLIENT_ID,
+    client_secret: process.env.UPDATE_ORDER_STATUS_CLIENT_SECRET,
     "X-Channel": "Web",
     "Content-Type": "application/xml",
   };
