@@ -55,7 +55,7 @@ const renameFileAsync = (filePath, newName) => {
 
 const sendSanRafaelSecuences = async (secuencesSanRafael, myHeaders) => {
   secuencesSanRafael.forEach(async (secuence) => {
-    if (secuence.startsWith("e_")) return;
+    if (secuence.startsWith("e_") || secuence.includes("dumb")) return;
     const fileData = await readFileAsync(`./eSEC/SEC_SRA/${secuence}`, "utf8");
 
     const fileDataObject = JSON.parse(fileData);
@@ -86,7 +86,7 @@ const sendSanRafaelSecuences = async (secuencesSanRafael, myHeaders) => {
 
 const sendGralAlvearSecuences = async (secuencesGralAlvear, myHeaders) => {
   secuencesGralAlvear.forEach(async (secuence) => {
-    if (secuence.startsWith("e_")) return;
+    if (secuence.startsWith("e_") || secuence.includes("dumb")) return;
     const fileData = await readFileAsync(`./eSEC/SEC_GRA/${secuence}`, "utf8");
 
     const fileDataObject = JSON.parse(fileData);
@@ -116,7 +116,7 @@ const sendGralAlvearSecuences = async (secuencesGralAlvear, myHeaders) => {
 };
 const sendMalargueSecuences = async (secuencesMalargue, myHeaders) => {
   secuencesMalargue.forEach(async (secuence) => {
-    if (secuence.startsWith("e_")) return;
+    if (secuence.startsWith("e_") || secuence.includes("dumb")) return;
     const fileData = await readFileAsync(`./eSEC/SEC_MAL/${secuence}`, "utf8");
 
     const fileDataObject = JSON.parse(fileData);
