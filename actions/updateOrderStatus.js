@@ -5,8 +5,14 @@ import axios from "axios";
 import fs from "fs";
 import { parseString } from "xml2js";
 
+const fileToRead = {
+  update: "./orderUpdateDelivered.xml",
+  sales: "./orderUpdateSales.xml",
+  deleted: "./orderUpdateDeleted.xml",
+};
+
 const getOrders = async () => {
-  const rawXML = await readFileAsync("./orderToUpdate.xml", "utf8");
+  const rawXML = await readFileAsync(fileToRead[process.env.ACTION], "utf8");
   return rawXML;
 };
 
@@ -71,11 +77,18 @@ const updateOrderStatus = async () => {
     const parsedXml = await parseXml(response.data);
     console.log("parsedXML --> ", parsedXml);
     const requestId = parsedXml["response-data"].RequestId[0];
-    writeFileAsync(`./${requestId}.xml`, response.data);
+    const currentDate = new Date();
+    const formattedDate = `${currentDate.getFullYear()}-${currentDate.getMonth()}-${currentDate.getDate()}`;
+
+    writeFileAsync(
+      `./responses/success/${formattedDate}_${process.env.ACTION.toUpperCase()}_${requestId}.xml`,
+      response.data
+    );
   } catch (error) {
     console.error("Error: ", error);
+
     writeFileAsync(
-      `./fail.txt`,
+      `./responses/error/fail.txt`,
       "There was an error updating the order status"
     );
   }
