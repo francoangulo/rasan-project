@@ -11,7 +11,7 @@
     "prod-orderUpdateSales": "ENVIRONMENT=production ACTION=sales node actions/updateOrderStatus.js",
     "prod-orderUpdateSales-win": "set ENVIRONMENT=production && set ACTION=sales && node actions/updateOrderStatus.js",
     "prod-orderUpdateDeleted": "ENVIRONMENT=production ACTION=deleted node actions/updateOrderStatus.js",
-    "prod-orderUpdateDeleted-win": "set 'ENVIRONMENT=production' & set 'ACTION=deleted' & node actions/updateOrderStatus.js",
+    "prod-orderUpdateDeleted-win": "set ENVIRONMENT=production && set ACTION=deleted && node actions/updateOrderStatus.js",
     "prod-postSecuence": "ENVIRONMENT=production node actions/postSecuence.js",
     "prod-postSecuence-win": "set ENVIRONMENT=production&& node actions/postSecuence.js"
   },
