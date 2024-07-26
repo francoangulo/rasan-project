@@ -4,16 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prod-getOrder": "ENVIRONMENT=production node actions/getOrder.js",
-    "prod-getOrder-win": "set ENVIRONMENT=production&& node actions/getOrder.js",
-    "prod-orderUpdateDelivered": "ENVIRONMENT=production ACTION=update node actions/updateOrderStatus.js",
-    "prod-orderUpdateDelivered-win": "set ENVIRONMENT=production && set ACTION=update && node actions/updateOrderStatus.js",
-    "prod-orderUpdateSales": "ENVIRONMENT=production ACTION=sales node actions/updateOrderStatus.js",
-    "prod-orderUpdateSales-win": "set ENVIRONMENT=production && set ACTION=sales && node actions/updateOrderStatus.js",
-    "prod-orderUpdateDeleted": "ENVIRONMENT=production ACTION=deleted node actions/updateOrderStatus.js",
-    "prod-orderUpdateDeleted-win": "set ENVIRONMENT=production && set ACTION=deleted && node actions/updateOrderStatus.js",
-    "prod-postSecuence": "ENVIRONMENT=production node actions/postSecuence.js",
-    "prod-postSecuence-win": "set ENVIRONMENT=production&& node actions/postSecuence.js"
+    "prod-getOrder": "cross-env ENVIRONMENT=production node actions/getOrder.js",
+    "prod-orderUpdateDelivered": "cross-env ENVIRONMENT=production ACTION=update node actions/updateOrderStatus.js",
+    "prod-orderUpdateSales": "cross-env ENVIRONMENT=production ACTION=sales node actions/updateOrderStatus.js",
+    "prod-orderUpdateDeleted": "cross-env ENVIRONMENT=production ACTION=deleted node actions/updateOrderStatus.js",
+    "prod-postSecuence": "cross-env ENVIRONMENT=production node actions/postSecuence.js"
   },
   "keywords": [],
   "author": "",
